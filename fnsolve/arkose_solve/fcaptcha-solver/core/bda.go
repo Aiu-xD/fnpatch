@@ -101,7 +101,7 @@ func ProcessWebGL2(data []map[string]interface{}) string {
 	return strings.Join(result, ",") + ",webgl_hash_webgl,"
 }
 
-var Platforms = []string{"chrome", "edge", "iphone", "firefox"}
+var Platforms = []string{"chrome", "edge", "iphone", "firefox", "turbo"}
 
 var PlatformData = map[string]map[string]interface{}{
 	"tls": {
@@ -109,96 +109,112 @@ var PlatformData = map[string]map[string]interface{}{
 		"edge":    profiles.Chrome_131,
 		"iphone":  profiles.Safari_IOS_18_0,
 		"firefox": profiles.Firefox_133,
+		"turbo":   profiles.Chrome_133,
 	},
 	"user_agent": {
 		"chrome":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
 		"edge":    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0",
 		"iphone":  "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Mobile/15E148 Safari/604.1",
 		"firefox": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0",
+		"turbo":   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
 	},
 	"data_brands": {
 		"chrome":  `"Not(A:Brand";v="99", "Google Chrome";v="133", "Chromium";v="133"`, //`"Not A(Brand";v="8", "Chromium";v="132", "Google Chrome";v="132"`,
 		"edge":    `"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"`,
 		"iphone":  nil,
 		"firefox": nil,
+		"turbo":   `"Not(A:Brand";v="99", "Google Chrome";v="133", "Chromium";v="133"`,
 	},
 	"sec_ch_ua_mobile": {
 		"chrome":  `?0`,
 		"edge":    `?0`,
 		"iphone":  nil,
 		"firefox": nil,
+		"turbo":   `?0`,
 	},
 	"sec_ch_ua_platform": {
 		"chrome":  `"Windows"`,
 		"edge":    `"Windows"`,
 		"iphone":  nil,
 		"firefox": nil,
+		"turbo":   `"Windows"`,
 	},
 	"screen_orientation": {
 		"chrome":  `landscape-primary`,
 		"edge":    `landscape-primary`,
 		"iphone":  `portrait-primary`,
 		"firefox": `landscape-primary`,
+		"turbo":   `landscape-primary`,
 	},
 	"navigator_permission_hash": {
 		"chrome":  utils.Md5Hash("accelerometer|background-sync|camera|clipboard-read|clipboard-write|geolocation|gyroscope|magnetometer|microphone|midi|notifications|payment-handler|persistent-storage"),
 		"edge":    utils.Md5Hash("accelerometer|background-sync|camera|clipboard-read|clipboard-write|geolocation|gyroscope|magnetometer|microphone|midi|notifications|payment-handler|persistent-storage"),
 		"iphone":  "57e48421c8755c660127af661537d6b0",
 		"firefox": `ff08c9a4035a62f27f41104aa682c277`,
+		"turbo":   utils.Md5Hash("accelerometer|background-sync|camera|clipboard-read|clipboard-write|geolocation|gyroscope|magnetometer|microphone|midi|notifications|payment-handler|persistent-storage"),
 	},
 	"css_pointer": {
 		"chrome":  `fine`,
 		"edge":    `fine`,
 		"iphone":  `coarse`,
 		"firefox": `fine`,
+		"turbo":   `fine`,
 	},
 	"browser_object_checks": {
 		"chrome":  utils.Md5Hash("chrome"),
 		"edge":    utils.Md5Hash("chrome"),
 		"iphone":  nil,
 		"firefox": nil,
+		"turbo":   utils.Md5Hash("chrome"),
 	},
 	"is_mobile": {
 		"chrome":  false,
 		"edge":    false,
 		"iphone":  nil,
 		"firefox": nil,
+		"turbo":   false,
 	},
 	"network_rtt_type": {
 		"chrome":  nil,
 		"edge":    nil,
 		"iphone":  nil,
 		"firefox": nil,
+		"turbo":   nil,
 	},
 	"navigator_pdf_enabled": {
 		"chrome":  true,
 		"edge":    true,
 		"iphone":  true,
 		"firefox": true,
+		"turbo":   true,
 	},
 	"browser_checks": {
 		"chrome":  DesktopAPIChecks,
 		"edge":    DesktopAPIChecks,
 		"iphone":  IphoneAPIChecks,
 		"firefox": FirefoxAPIChecks,
+		"turbo":   DesktopAPIChecks,
 	},
 	"pixel_ratio": {
 		"chrome":  "1",
 		"edge":    "1",
 		"iphone":  "3",
 		"firefox": "1",
+		"turbo":   "1",
 	},
 	"local_storage": {
 		"chrome":  "true",
 		"edge":    "true",
 		"iphone":  "true",
 		"firefox": "true",
+		"turbo":   "true",
 	},
 	"operating_platform": {
 		"chrome":  "Win32",
 		"edge":    "Win32",
-		"iphone":  "iPhone",
-		"firefox": "Win32",
+		"iphone":  nil,
+		"firefox": nil,
+		"turbo":   "Win32",
 	},
 	"supported_touch_types": {
 		"chrome":  "0,false,false",

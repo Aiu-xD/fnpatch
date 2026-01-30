@@ -3,6 +3,8 @@ module funcaptchaapi
 go 1.23.1
 
 require (
+	github.com/DalphanDev/Turbo v0.0.0
+	github.com/andybalholm/brotli v1.1.1
 	github.com/bogdanfinn/fhttp v0.5.34
 	github.com/bogdanfinn/tls-client v1.8.0
 	github.com/bogdanfinn/utls v1.6.5
@@ -13,10 +15,12 @@ require (
 	golang.org/x/net v0.34.0
 )
 
+replace github.com/DalphanDev/Turbo => ../../../Turbo
+
 require (
-	github.com/andybalholm/brotli v1.1.1 // indirect
 	github.com/cloudflare/circl v1.5.0 // indirect
 	github.com/dlclark/regexp2 v1.11.4 // indirect
+	github.com/gaukas/godicttls v0.0.4 // indirect
 	github.com/go-sourcemap/sourcemap v2.1.4+incompatible // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/google/pprof v0.0.0-20240910150728-a0b0bb1d4134 // indirect
@@ -26,6 +30,7 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/oschwald/maxminddb-golang v1.13.1 // indirect
 	github.com/quic-go/quic-go v0.48.1 // indirect
+	github.com/refraction-networking/utls v1.5.4 // indirect
 	github.com/tam7t/hpkp v0.0.0-20160821193359-2b70b4024ed5 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect

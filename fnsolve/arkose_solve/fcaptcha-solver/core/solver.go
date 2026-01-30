@@ -125,7 +125,6 @@ func NewFuncaptchaTask(blob string, proxy string, platform string, hardcoded boo
 	dataBrands := PlatformData["data_brands"][platform]
 	isMobileHeader := PlatformData["sec_ch_ua_mobile"][platform]
 	osPlatform := PlatformData["sec_ch_ua_platform"][platform]
-	tlsProfile := PlatformData["tls"][platform].(profiles.ClientProfile)
 
 	// Language
 	locale := "en-US"
@@ -137,19 +136,32 @@ func NewFuncaptchaTask(blob string, proxy string, platform string, hardcoded boo
 	}
 
 	// HTTP Client
-	jar := tls_client.NewCookieJar()
-	options := []tls_client.HttpClientOption{
-		tls_client.WithTimeoutSeconds(timeout),
-		tls_client.WithClientProfile(tlsProfile),
-		tls_client.WithProxyUrl(proxy),
-		tls_client.WithCookieJar(jar),
-		tls_client.WithRandomTLSExtensionOrder(),
-	}
+	var client tls_client.HttpClient
+	var err error
 
-	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
-	if err != nil {
-		log.Printf("Failed to create client: %v", err)
-		return nil, fmt.Errorf("failed to create client")
+	if platform == "turbo" {
+		turboClient, err := utils.NewTurboTLSClient(proxy, "chrome")
+		if err != nil {
+			log.Printf("Failed to create client: %v", err)
+			return nil, fmt.Errorf("failed to create client")
+		}
+		client = turboClient
+	} else {
+		tlsProfile := PlatformData["tls"][platform].(profiles.ClientProfile)
+		jar := tls_client.NewCookieJar()
+		options := []tls_client.HttpClientOption{
+			tls_client.WithTimeoutSeconds(timeout),
+			tls_client.WithClientProfile(tlsProfile),
+			tls_client.WithProxyUrl(proxy),
+			tls_client.WithCookieJar(jar),
+			tls_client.WithRandomTLSExtensionOrder(),
+		}
+
+		client, err = tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
+		if err != nil {
+			log.Printf("Failed to create client: %v", err)
+			return nil, fmt.Errorf("failed to create client")
+		}
 	}
 
 	// Create Task
