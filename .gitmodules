@@ -1,0 +1,6 @@
+[submodule "Turbo"]
+	path = Turbo
+	url = https://github.com/DalphanDev/Turbo.git
+[submodule "fnsolve/arkose_solve/fcaptcha-solver"]
+	path = fnsolve/arkose_solve/fcaptcha-solver
+	url = https://github.com/mr-alejandroo/fcaptcha-solver
